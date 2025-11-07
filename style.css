@@ -1,0 +1,195 @@
+/* === Cartas al Corazón — CSS inspirado en Attack on Titan + Demon Slayer === */
+
+@import url('https://fonts.googleapis.com/css2?family=Zen+Kurenaido&family=Inconsolata:wght@400;700&family=Black+Han+Sans&display=swap');
+
+/* ---- Estilos base ---- */
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Zen Kurenaido', sans-serif;
+  background: radial-gradient(circle at top, #1a1a1a 0%, #000 80%);
+  color: #f5f5f5;
+  overflow-x: hidden;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: background 1s ease;
+}
+
+h1, h2 {
+  font-family: 'Black Han Sans', sans-serif;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  text-shadow: 0 0 15px rgba(255, 80, 80, 0.6);
+}
+
+p {
+  font-family: 'Inconsolata', monospace;
+  font-size: 1.2rem;
+  line-height: 1.6;
+  max-width: 800px;
+  margin: 20px auto;
+  color: #dcdcdc;
+}
+
+/* ---- Escenas ---- */
+.scene {
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 40px;
+  width: 100%;
+  min-height: 100vh;
+  opacity: 0;
+  transition: opacity 1s ease;
+}
+
+.scene.active {
+  display: flex;
+  opacity: 1;
+}
+
+/* ---- Botones ---- */
+.btn {
+  background: linear-gradient(135deg, #b32020, #7c0a02);
+  color: #fff;
+  border: none;
+  font-family: 'Inconsolata', monospace;
+  padding: 12px 28px;
+  font-size: 1.1rem;
+  border-radius: 12px;
+  cursor: pointer;
+  margin: 10px;
+  transition: all 0.4s ease;
+  box-shadow: 0 0 15px rgba(255, 60, 60, 0.3);
+}
+
+.btn:hover {
+  transform: translateY(-3px) scale(1.05);
+  background: linear-gradient(135deg, #d61f1f, #b32020);
+  box-shadow: 0 0 25px rgba(255, 100, 100, 0.7);
+}
+
+/* ---- Cartas ---- */
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 30px;
+  margin-top: 40px;
+  flex-wrap: wrap;
+}
+
+.letter {
+  position: relative;
+  width: 280px;
+  height: 400px;
+  overflow: hidden;
+  border-radius: 20px;
+  cursor: pointer;
+  transform: scale(1);
+  transition: all 0.5s ease;
+  box-shadow: 0 0 25px rgba(255, 255, 255, 0.1);
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.letter:hover {
+  transform: scale(1.1) rotate(-1deg);
+  box-shadow: 0 0 40px rgba(255, 100, 100, 0.6);
+}
+
+.letter img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: brightness(0.8) contrast(1.1);
+  transition: all 0.5s ease;
+}
+
+.letter:hover img {
+  filter: brightness(1) saturate(1.3);
+}
+
+/* ---- Mensaje emergente ---- */
+.message {
+  position: fixed;
+  bottom: 40px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(15, 15, 15, 0.85);
+  border: 2px solid rgba(255, 80, 80, 0.8);
+  border-radius: 15px;
+  padding: 20px 40px;
+  color: #f8f8f8;
+  font-size: 1.1rem;
+  font-family: 'Inconsolata', monospace;
+  text-align: center;
+  max-width: 800px;
+  box-shadow: 0 0 25px rgba(255, 0, 0, 0.5);
+  opacity: 1;
+  transition: all 1s ease;
+}
+
+.message.hidden {
+  opacity: 0;
+  pointer-events: none;
+}
+
+/* ---- Título ---- */
+#inicio h1 {
+  font-size: 3.2rem;
+  color: #fff;
+  text-shadow: 0 0 20px rgba(255, 60, 60, 0.8);
+  animation: pulse 2.5s infinite;
+}
+
+/* ---- Animaciones ---- */
+@keyframes pulse {
+  0%, 100% { text-shadow: 0 0 20px rgba(255, 60, 60, 0.8); }
+  50% { text-shadow: 0 0 35px rgba(255, 100, 100, 1); }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* ---- Efectos Demon Slayer ---- */
+.sky::before {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(circle, rgba(255,255,255,0.05), transparent 70%),
+              url('https://i.ibb.co/kHyPZpj/kimetsu-bg.jpg') center/cover no-repeat;
+  opacity: 0.25;
+  z-index: -1;
+  animation: aura 12s infinite alternate ease-in-out;
+  filter: blur(2px);
+}
+
+@keyframes aura {
+  0% { opacity: 0.15; transform: scale(1); }
+  100% { opacity: 0.35; transform: scale(1.1); }
+}
+
+/* ---- Responsive ---- */
+@media (max-width: 768px) {
+  .letter {
+    width: 220px;
+    height: 320px;
+  }
+
+  p {
+    font-size: 1rem;
+  }
+
+  h1 {
+    font-size: 2rem;
+  }
+}

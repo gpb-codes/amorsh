@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Cartas al Corazón</title>
+  <link href="https://fonts.googleapis.com/css2?family=Zen+Kurenaido&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inconsolata:wght@400;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Black+Han+Sans&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+  <div id="inicio" class="scene active">
+    <h1>💌 Cartas al Corazón</h1>
+    <p>En un mundo donde el amor y la guerra coexisten, tres cartas selladas guardan las palabras más profundas de almas que jamás se rindieron.</p>
+    <div class="options">
+      <button class="btn" onclick="nextScene('pregunta')">> Abrir el primer sello</button>
+    </div>
+  </div>
+
+  <div id="pregunta" class="scene">
+    <h2>¿Estás listo para leer lo que un corazón decidió escribir incluso frente al fin del mundo?</h2>
+    <div class="options">
+      <button class="btn" onclick="nextScene('cartas')">> Estoy listo</button>
+      <button class="btn" onclick="nextScene('inicio')">> No... aún no</button>
+    </div>
+  </div>
+
+  <div id="cartas" class="scene">
+    <h2>Selecciona una carta...</h2>
+    <div class="container">
+      <!-- Carta 1: Demon Slayer -->
+      <div class="letter" onclick="showMessage('Incluso si mi alma se quiebra mil veces, seguiré buscándote entre las sombras, porque el amor también puede ser una llama que no se apaga ni con la muerte. — Demon Slayer')">
+        <img src="/img/6528.png" alt="Carta 1" />
+      </div>
+
+      <!-- Carta 2: Mikasa -->
+      <div class="letter" onclick="showMessage('Si me alejo de ti, el mundo entero se vuelve un campo de batalla sin sentido. Porque donde estés tú… ahí está mi hogar. — Mikasa Ackerman, Attack on Titan')">
+        <img src="/img/6547.jpg" alt="Carta 2" />
+      </div>
+
+      <!-- Carta 3: Eren -->
+      <div class="letter" onclick="showMessage('No lucho por la libertad del mundo. Lucho por el futuro donde tu sonrisa todavía exista. — Eren Yeager, Attack on Titan')">
+        <img src="/img/6746.jpg" alt="Carta 3" />
+      </div>
+    </div>
+
+    <div id="messageBox" class="message hidden"></div>
+
+    <div class="options">
+      <button class="btn" onclick="nextScene('reflexion')">> Continuar</button>
+    </div>
+  </div>
+
+  <div id="reflexion" class="scene">
+    <h2>Dicen que las palabras pueden atravesar el tiempo, incluso cuando el cuerpo se marchita.</h2>
+    <p>Tal vez el amor es eso: una promesa que ni el miedo, ni los titanes, ni los demonios pueden romper.</p>
+    <div class="options">
+      <button class="btn" onclick="nextScene('final')">> Leer la última carta</button>
+    </div>
+  </div>
+
+  <div id="final" class="scene">
+    <h1>💖 Gracias por abrir estas cartas.</h1>
+    <p>El amor puede ser guerra, llama o libertad.  
+    Pero cuando es verdadero, siempre es hogar.</p>
+    <div class="options">
+      <button class="btn" onclick="restart()">> Volver al inicio</button>
+    </div>
+  </div>
+
+  <script>
+    function nextScene(id) {
+      document.querySelectorAll('.scene').forEach(s => s.classList.remove('active'));
+      document.getElementById(id).classList.add('active');
+    }
+
+    function restart() {
+      nextScene('inicio');
+    }
+
+    function showMessage(text) {
+      const messageBox = document.getElementById("messageBox");
+      messageBox.textContent = text;
+      messageBox.classList.remove("hidden");
+      messageBox.style.opacity = "1";
+
+      setTimeout(() => {
+        messageBox.classList.add("hidden");
+      }, 8000);
+    }
+  </script>
+</body>
+</html>
